@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHALIL TICH | Dz</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Orbitron:wght@500;900&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00f2ff;
@@ -45,30 +45,26 @@
             text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.7);
         }
 
-        /* تصميم العداد الاحترافي */
-        .timer-wrapper {
-            position: relative; width: 100px; height: 100px; margin: 0 auto 20px;
-            display: flex; align-items: center; justify-content: center;
+        /* شكل العداد الجديد والمبهر */
+        .timer-box-pro {
+            position: relative; padding: 20px; border-radius: 20px;
+            background: rgba(0, 0, 0, 0.3); border: 1px inset var(--border);
+            margin-bottom: 20px; overflow: hidden;
         }
-        .timer-svg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            transform: rotate(-90deg);
+        .timer-box-pro::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: scanning 2s linear infinite;
         }
-        .timer-svg circle {
-            fill: none; stroke-width: 6; stroke-linecap: round;
-            stroke: rgba(255,255,255,0.05);
-        }
-        .timer-svg .progress {
-            stroke: var(--primary);
-            stroke-dasharray: 283; /* 2 * PI * R */
-            stroke-dashoffset: 0;
-            transition: stroke-dashoffset 1s linear, stroke 0.5s;
-            filter: drop-shadow(0 0 5px var(--primary));
-        }
+        @keyframes scanning { 0% { top: 0; } 100% { top: 100%; } }
+
         #seconds {
-            font-family: 'Orbitron', sans-serif; font-size: 2rem;
-            font-weight: 900; color: #fff; text-shadow: 0 0 15px var(--primary);
+            font-family: 'Orbitron', sans-serif; font-size: 3.5rem;
+            font-weight: 900; color: #fff; display: block;
+            text-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary);
+            line-height: 1; margin-bottom: 10px;
         }
+        .timer-label { font-family: 'Rajdhani', sans-serif; color: var(--primary); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; }
 
         .section-box {
             background: rgba(255,255,255,0.03); border: 1px solid var(--border);
@@ -88,12 +84,14 @@
         .btn:hover { background: rgba(255,255,255,0.1); border-color: #fff; transform: translateY(-3px); }
 
         /* أيقونات التطبيقات الحقيقية */
-        .fa-telegram { color: #26A5E4; } .fa-instagram { color: #E4405F; } .fa-x-twitter { color: #fff; }
+        .fa-telegram { color: #26A5E4; } 
+        .fa-instagram { color: #E4405F; } 
+        .fa-x-twitter { color: #ffffff; } /* أيقونة تويتر X الجديدة باللون الأبيض */
 
         .btn-download {
             background: linear-gradient(45deg, var(--secondary), var(--primary)) !important;
             border: none; box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3);
-            font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .footer { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 20px; font-weight: 900; }
@@ -108,24 +106,18 @@
             <div class="section-box">
                 <i class="fas fa-crown" style="color: var(--gold); font-size: 1.5rem; margin-bottom: 10px; filter: drop-shadow(0 0 10px var(--gold));"></i>
                 <h1>KHALIL TICH</h1>
-                <p style="color: var(--primary); font-size: 0.6rem; font-weight: bold; letter-spacing: 2px;">DIGITAL HUB</p>
+                <p style="color: var(--primary); font-size: 0.6rem; font-weight: bold; letter-spacing: 2px;">SECURE ACCESS HUB</p>
             </div>
 
-            <div id="timer-container" class="section-box">
-                <div class="timer-wrapper">
-                    <svg class="timer-svg">
-                        <circle cx="50" cy="50" r="45"></circle>
-                        <circle class="progress" id="bar" cx="50" cy="50" r="45"></circle>
-                    </svg>
-                    <span id="seconds">10</span>
-                </div>
-                <p style="color: #ccc; font-size: 0.7rem; font-weight: bold;">جاري فحص الرابط الرقمي...</p>
+            <div id="timer-container" class="timer-box-pro">
+                <span id="seconds">10</span>
+                <span class="timer-label">System Checking</span>
             </div>
 
             <div class="links-list">
                 <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" class="btn btn-download" style="display: none;">
-                    <span>GET LINK NOW</span>
-                    <i class="fas fa-external-link-alt"></i>
+                    <span>GET SECURE LINK</span>
+                    <i class="fas fa-shield-halved"></i>
                 </a>
 
                 <a href="https://instagram.com/free7styel" target="_blank" class="btn">
@@ -138,22 +130,25 @@
                     <i class="fab fa-telegram"></i>
                 </a>
 
+                <a href="https://twitter.com/free7styel" target="_blank" class="btn">
+                    <span>X (Twitter)</span>
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+
                 <div class="btn" style="cursor:pointer" onclick="shareSite()">
                     <span>Share Site</span>
                     <i class="fas fa-share-nodes"></i>
                 </div>
             </div>
 
-            <p class="footer">DESIGNED BY KHALIL TICH • 2025</p>
+            <p class="footer">DESIGNED BY KHALIL TICH • ALGERIA 2025</p>
         </div>
     </div>
 
     <script>
         const container = document.getElementById('card-container');
         const cursor = document.getElementById('cursor');
-        const progressCircle = document.getElementById('bar');
         
-        // حركة الماوس والبطاقة
         let lastX = 0;
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -166,21 +161,16 @@
             container.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
         });
 
-        // كود العداد الاحترافي
+        // العداد الرقمي
         let timeLeft = 10;
-        const totalTime = 10;
-        const fullDash = 283; // المحيط
-
         let timer = setInterval(() => {
             timeLeft--;
-            document.getElementById('seconds').innerText = timeLeft;
+            document.getElementById('seconds').innerText = timeLeft < 10 ? '0' + timeLeft : timeLeft;
             
-            // تحديث الدائرة الزرقاء
-            let offset = fullDash - (timeLeft / totalTime) * fullDash;
-            progressCircle.style.strokeDashoffset = offset;
-
-            // تغيير اللون عند الاقتراب من الصفر
-            if (timeLeft <= 3) progressCircle.style.stroke = "#ff4444";
+            if(timeLeft <= 3) {
+                document.getElementById('seconds').style.color = "#ff4444";
+                document.getElementById('seconds').style.textShadow = "0 0 20px #ff4444";
+            }
 
             if(timeLeft <= 0) {
                 clearInterval(timer);
@@ -191,9 +181,8 @@
 
         function shareSite() {
             navigator.clipboard.writeText(window.location.href);
-            alert('تم نسخ الرابط بنجاح! انطلق الآن.');
+            alert('تم نسخ الرابط! انشره الآن.');
         }
     </script>
 </body>
 </html>
-
