@@ -92,33 +92,17 @@
             <span id="seconds">10</span>
         </div>
     </div>
-<div id="download-section" style="margin-top: 20px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; border: 1px dashed var(--primary);">
-    
-    <div id="timer-box">
-        <p style="color: #eee; font-size: 0.9rem; margin-bottom: 10px;">يتم الآن فحص الرابط وتجهيز ملف التحميل...</p>
-        <div style="font-size: 2rem; color: var(--primary); font-weight: 900;">
-            <span id="seconds">10</span>
-        </div>
+<div id="download-section" style="grid-column: span 2; margin-top: 5px;">
+    <div id="timer-box" style="padding: 10px; border: 1px dashed var(--primary); border-radius: 15px;">
+        <p style="color: #ccc; font-size: 0.7rem; margin: 0;">جاري تجهيز الرابط...</p>
+        <span id="seconds" style="font-size: 1.2rem; color: var(--primary); font-weight: bold;">10</span>
     </div>
-
-    <a href="https://khalil2010gh-del.github.io/khalil-link-tich/" id="download-btn" target="_blank" class="btn btn-large" style="display: none; border: 2px solid var(--primary); box-shadow: 0 0 20px var(--primary);">
+    <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" target="_blank" class="btn btn-large" style="display: none; padding: 12px !important;">
         <span class="online-dot"></span>
-        <span>جاهز! اضغط للتحميل المباشر</span>
-        <i class="fas fa-bolt" style="margin-right: auto; color: var(--gold);"></i>
+        <span style="font-size: 0.9rem;">اضغط للتحميل المباشر</span>
     </a>
 </div>
-
-<script>
-    let timeLeft = 10;
-    let downloadTimer = setInterval(function(){
-        timeLeft--;
-        document.getElementById("seconds").textContent = timeLeft;
-        if(timeLeft <= 0){
-            clearInterval(downloadTimer);
-            document.getElementById("timer-box").style.display = "none";
-            document.getElementById("download-btn").style.display = "flex";
-        }
-    }, 1000);
+   
 </script>
 
 </script>
@@ -160,6 +144,7 @@
 </body>
 
 </html>
+
 
 
 
