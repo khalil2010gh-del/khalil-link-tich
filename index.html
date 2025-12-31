@@ -14,7 +14,6 @@
             --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
         }
-        /* إخفاء الماوس العادي وتعديل الخط */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; cursor: none; }
         
         body {
@@ -22,12 +21,31 @@
             background: #05050f; overflow: hidden; perspective: 1000px;
         }
 
-        /* الماوس الجديد */
+        /* الماوس الدائري */
         .cursor {
             width: 20px; height: 20px; border: 2px solid var(--primary);
             border-radius: 50%; position: fixed; pointer-events: none;
             z-index: 9999; transform: translate(-50%, -50%);
             box-shadow: 0 0 15px var(--primary); transition: transform 0.1s ease-out;
+        }
+
+        /* تأثير الطائرة الورقية */
+        .paper-plane {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 24px;
+            z-index: 2;
+            filter: drop-shadow(0 0 5px var(--primary));
+            animation: flyPath 15s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes flyPath {
+            0% { transform: translate(-10vw, 110vh) rotate(45deg); opacity: 0; }
+            10% { opacity: 1; }
+            40% { transform: translate(50vw, 50vh) rotate(10deg); }
+            60% { transform: translate(110vw, -10vh) rotate(-20deg); }
+            100% { transform: translate(-10vw, 110vh) rotate(45deg); opacity: 0; }
         }
 
         .aurora {
@@ -77,21 +95,23 @@
             display: flex; justify-content: space-between; align-items: center;
             transition: 0.3s;
         }
-        .btn:hover { transform: scale(1.02); background: rgba(255,255,255,0.1); }
+        .btn:hover { transform: scale(1.02); background: rgba(255,255,255,0.1); border-color: white; }
         
-        /* ألوان الأيقونات الأصلية */
+        /* أيقونات ملونة حقيقية */
         .fa-telegram { color: #26A5E4; }
         .fa-instagram { color: #E4405F; }
         .fa-x-twitter { color: #fff; }
         .fa-share-nodes { color: var(--gold); }
 
-        .btn-main { background: linear-gradient(45deg, var(--secondary), var(--primary)) !important; border: none; }
+        .btn-main { background: linear-gradient(45deg, var(--secondary), var(--primary)) !important; border: none; box-shadow: 0 0 15px rgba(0, 242, 255, 0.4); }
 
         .footer { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 15px; }
     </style>
 </head>
 <body>
     <div class="cursor" id="cursor"></div>
+
+    <i class="fas fa-paper-plane paper-plane"></i>
 
     <div class="aurora"></div>
 
@@ -117,7 +137,7 @@
 
             <div class="links-list">
                 <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" class="btn btn-main" style="display: none;">
-                    <span>تحميل الآن (رابط مباشر)</span>
+                    <span>تحميل مباشر الآن</span>
                     <i class="fas fa-bolt"></i>
                 </a>
 
@@ -132,7 +152,7 @@
                 </a>
 
                 <a href="https://twitter.com/free7styel" target="_blank" class="btn">
-                    <span>تابعنا على تويتر</span>
+                    <span>تويتر (X)</span>
                     <i class="fab fa-x-twitter"></i>
                 </a>
 
@@ -150,12 +170,12 @@
         const container = document.getElementById('card-container');
         const cursor = document.getElementById('cursor');
         
-        // حركة مؤشر الماوس الدائري
         document.addEventListener('mousemove', (e) => {
+            // تحريك الماوس الدائري
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
             
-            // حركة تتبع الماوس 3D للبطاقة
+            // تحريك البطاقة 3D
             let x = (window.innerWidth / 2 - e.pageX) / 20;
             let y = (window.innerHeight / 2 - e.pageY) / 20;
             container.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
@@ -175,7 +195,7 @@
 
         function shareSite() {
             navigator.clipboard.writeText(window.location.href);
-            alert('تم نسخ الرابط! انشره الآن واربح.');
+            alert('تم نسخ الرابط! انشره الآن.');
         }
     </script>
 </body>
