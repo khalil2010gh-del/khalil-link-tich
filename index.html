@@ -5,142 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHALIL TICH | Dz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00f2ff;
             --secondary: #7000ff;
             --gold: #ffcc00;
-            --glass: rgba(255, 255, 255, 0.03);
+            --glass: rgba(255, 255, 255, 0.02);
             --border: rgba(255, 255, 255, 0.1);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; cursor: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         
         body {
             height: 100vh; display: flex; justify-content: center; align-items: center;
-            background: #05050f; overflow: hidden; perspective: 1000px;
+            background: #02020a; overflow: hidden; perspective: 1000px;
+            font-family: 'Cairo', sans-serif;
         }
 
-        /* مؤشر الماوس على شكل طائرة ورقية صغيرة */
+        /* الماوس الطائرة الورقية */
         .cursor-plane {
-            position: fixed;
-            top: 0; left: 0;
-            width: 30px; height: 30px;
-            color: var(--primary);
-            font-size: 24px;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s ease-out;
-            filter: drop-shadow(0 0 8px var(--primary));
-        }
-
-        /* طائرة ورقية ثانية تطير في الخلفية */
-        .bg-plane {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.2);
-            font-size: 40px;
-            z-index: 1;
-            animation: fancyFly 20s linear infinite;
-        }
-
-        @keyframes fancyFly {
-            0% { transform: translate(-10vw, 50vh) rotate(30deg); }
-            25% { transform: translate(30vw, 10vh) rotate(0deg); }
-            50% { transform: translate(110vw, 40vh) rotate(20deg); }
-            75% { transform: translate(50vw, 90vh) rotate(-10deg); }
-            100% { transform: translate(-10vw, 50vh) rotate(30deg); }
+            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+            color: var(--primary); font-size: 22px; transition: transform 0.1s ease-out;
+            filter: drop-shadow(0 0 8px var(--primary)); transform: translate(-50%, -50%);
         }
 
         .aurora {
             position: absolute; width: 200%; height: 200%;
             background: radial-gradient(circle at 20% 30%, var(--secondary) 0%, transparent 40%),
                         radial-gradient(circle at 80% 70%, var(--primary) 0%, transparent 40%);
-            filter: blur(80px); animation: rotateBG 20s linear infinite; opacity: 0.2;
+            filter: blur(80px); animation: rotateBG 25s linear infinite; opacity: 0.15;
         }
         @keyframes rotateBG { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        .container {
-            position: relative; z-index: 10;
-            transition: transform 0.1s ease-out;
-            transform-style: preserve-3d;
-        }
+        .container { position: relative; z-index: 10; transform-style: preserve-3d; transition: 0.1s; }
 
         .glass-card {
-            width: 340px; background: var(--glass);
-            backdrop-filter: blur(25px); border: 1px solid var(--border);
-            border-radius: 30px; padding: 25px; text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            width: 350px; background: var(--glass); backdrop-filter: blur(30px);
+            border: 1px solid var(--border); border-radius: 35px; padding: 30px 25px;
+            text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+        }
+
+        /* تصميم العداد الاحترافي */
+        .timer-wrapper {
+            position: relative; width: 100px; height: 100px; margin: 0 auto 20px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .timer-svg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            transform: rotate(-90deg);
+        }
+        .timer-svg circle {
+            fill: none; stroke-width: 6; stroke-linecap: round;
+            stroke: rgba(255,255,255,0.05);
+        }
+        .timer-svg .progress {
+            stroke: var(--primary);
+            stroke-dasharray: 283; /* 2 * PI * R */
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s linear, stroke 0.5s;
+            filter: drop-shadow(0 0 5px var(--primary));
+        }
+        #seconds {
+            font-family: 'Orbitron', sans-serif; font-size: 2rem;
+            font-weight: 900; color: #fff; text-shadow: 0 0 15px var(--primary);
         }
 
         .section-box {
-            border: 1px solid var(--border);
-            border-radius: 20px; padding: 15px; margin-bottom: 15px;
-            background: rgba(255,255,255,0.02);
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            border-radius: 20px; padding: 15px; margin-bottom: 20px;
         }
 
-        .crown-box svg { width: 50px; fill: #ffcc00; filter: drop-shadow(0 0 10px var(--gold)); }
-        h1 { color: #fff; font-size: 1.5rem; font-weight: 900; }
-
-        .timer-frame { display: flex; align-items: center; justify-content: center; gap: 15px; }
-        .circle {
-            width: 50px; height: 50px; border-radius: 50%;
-            border: 2px solid var(--primary); display: flex;
-            align-items: center; justify-content: center;
-            font-weight: 900; color: #fff; box-shadow: 0 0 10px var(--primary);
-        }
-
-        .links-list { display: flex; flex-direction: column; gap: 10px; }
+        h1 { font-size: 1.4rem; color: #fff; font-weight: 900; letter-spacing: 1px; margin-bottom: 5px; }
+        
+        .links-list { display: flex; flex-direction: column; gap: 12px; }
         .btn {
             background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-            padding: 12px 15px; border-radius: 12px; text-decoration: none;
-            color: #fff; font-size: 0.85rem; font-weight: 700;
-            display: flex; justify-content: space-between; align-items: center;
-            transition: 0.3s;
+            padding: 14px 20px; border-radius: 15px; text-decoration: none;
+            color: #fff; font-weight: 700; display: flex; justify-content: space-between;
+            align-items: center; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 0.9rem;
         }
-        .btn:hover { background: rgba(0, 242, 255, 0.2); border-color: white; transform: scale(1.02); }
-        
-        /* أيقونات حقيقية */
-        .fa-telegram { color: #26A5E4; }
-        .fa-instagram { color: #E4405F; }
-        .fa-x-twitter { color: #fff; }
+        .btn:hover { background: rgba(255,255,255,0.1); border-color: #fff; transform: translateY(-3px); }
 
-        .btn-main { background: linear-gradient(45deg, var(--secondary), var(--primary)) !important; border: none; }
-        .footer { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 15px; }
+        /* أيقونات التطبيقات الحقيقية */
+        .fa-telegram { color: #26A5E4; } .fa-instagram { color: #E4405F; } .fa-x-twitter { color: #fff; }
+
+        .btn-download {
+            background: linear-gradient(45deg, var(--secondary), var(--primary)) !important;
+            border: none; box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3);
+            font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
+        }
+
+        .footer { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 20px; font-weight: 900; }
     </style>
 </head>
 <body>
-    <div class="cursor-plane" id="plane-cursor">
-        <i class="fas fa-paper-plane"></i>
-    </div>
-
-    <i class="fas fa-paper-plane bg-plane"></i>
-
+    <div class="cursor-plane" id="cursor"><i class="fas fa-paper-plane"></i></div>
     <div class="aurora"></div>
 
     <div class="container" id="card-container">
         <div class="glass-card">
             <div class="section-box">
-                <div class="crown-box">
-                    <svg viewBox="0 0 100 100"><path d="M10,80 L90,80 L100,30 L75,50 L50,20 L25,50 L0,30 Z"/></svg>
-                </div>
+                <i class="fas fa-crown" style="color: var(--gold); font-size: 1.5rem; margin-bottom: 10px; filter: drop-shadow(0 0 10px var(--gold));"></i>
                 <h1>KHALIL TICH</h1>
-                <p style="color: var(--primary); font-size: 0.7rem; font-weight: bold;">DIRECT DOWNLOAD CENTER</p>
+                <p style="color: var(--primary); font-size: 0.6rem; font-weight: bold; letter-spacing: 2px;">DIGITAL HUB</p>
             </div>
 
-            <div class="section-box" id="timer-section">
-                <div class="timer-frame">
-                    <div class="circle" id="seconds">10</div>
-                    <div style="text-align: right;">
-                        <p style="color: #fff; font-size: 0.8rem; font-weight: bold;">تحليق نحو الرابط...</p>
-                        <p style="color: #ccc; font-size: 0.6rem;">انتظر لحظة من فضلك</p>
-                    </div>
+            <div id="timer-container" class="section-box">
+                <div class="timer-wrapper">
+                    <svg class="timer-svg">
+                        <circle cx="50" cy="50" r="45"></circle>
+                        <circle class="progress" id="bar" cx="50" cy="50" r="45"></circle>
+                    </svg>
+                    <span id="seconds">10</span>
                 </div>
+                <p style="color: #ccc; font-size: 0.7rem; font-weight: bold;">جاري فحص الرابط الرقمي...</p>
             </div>
 
             <div class="links-list">
-                <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" class="btn btn-main" style="display: none;">
-                    <span>إبدأ التحميل الآن</span>
-                    <i class="fas fa-paper-plane"></i>
+                <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" class="btn btn-download" style="display: none;">
+                    <span>GET LINK NOW</span>
+                    <i class="fas fa-external-link-alt"></i>
                 </a>
 
                 <a href="https://instagram.com/free7styel" target="_blank" class="btn">
@@ -154,56 +139,61 @@
                 </a>
 
                 <div class="btn" style="cursor:pointer" onclick="shareSite()">
-                    <span>مشاركة الموقع</span>
-                    <i class="fas fa-share-nodes" style="color: var(--gold);"></i>
+                    <span>Share Site</span>
+                    <i class="fas fa-share-nodes"></i>
                 </div>
             </div>
 
-            <p class="footer">KHALIL TICH • 2025</p>
+            <p class="footer">DESIGNED BY KHALIL TICH • 2025</p>
         </div>
     </div>
 
     <script>
         const container = document.getElementById('card-container');
-        const plane = document.getElementById('plane-cursor');
+        const cursor = document.getElementById('cursor');
+        const progressCircle = document.getElementById('bar');
         
+        // حركة الماوس والبطاقة
         let lastX = 0;
-
         document.addEventListener('mousemove', (e) => {
-            // تحريك الطائرة الماوس
-            plane.style.left = e.clientX + 'px';
-            plane.style.top = e.clientY + 'px';
-
-            // تدوير الطائرة حسب اتجاه الحركة
-            if (e.clientX > lastX) {
-                plane.style.transform = 'translate(-50%, -50%) rotate(15deg)';
-            } else {
-                plane.style.transform = 'translate(-50%, -50%) rotate(-15deg)';
-            }
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.transform = `translate(-50%, -50%) rotate(${e.clientX > lastX ? '15deg' : '-15deg'})`;
             lastX = e.clientX;
-            
-            // تحريك البطاقة 3D
-            let x = (window.innerWidth / 2 - e.pageX) / 20;
-            let y = (window.innerHeight / 2 - e.pageY) / 20;
+
+            let x = (window.innerWidth / 2 - e.pageX) / 25;
+            let y = (window.innerHeight / 2 - e.pageY) / 25;
             container.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
         });
 
-        // العداد
+        // كود العداد الاحترافي
         let timeLeft = 10;
+        const totalTime = 10;
+        const fullDash = 283; // المحيط
+
         let timer = setInterval(() => {
             timeLeft--;
             document.getElementById('seconds').innerText = timeLeft;
+            
+            // تحديث الدائرة الزرقاء
+            let offset = fullDash - (timeLeft / totalTime) * fullDash;
+            progressCircle.style.strokeDashoffset = offset;
+
+            // تغيير اللون عند الاقتراب من الصفر
+            if (timeLeft <= 3) progressCircle.style.stroke = "#ff4444";
+
             if(timeLeft <= 0) {
                 clearInterval(timer);
-                document.getElementById('timer-section').style.display = 'none';
+                document.getElementById('timer-container').style.display = 'none';
                 document.getElementById('download-btn').style.display = 'flex';
             }
         }, 1000);
 
         function shareSite() {
             navigator.clipboard.writeText(window.location.href);
-            alert('تم نسخ الرابط بنجاح!');
+            alert('تم نسخ الرابط بنجاح! انطلق الآن.');
         }
     </script>
 </body>
 </html>
+
