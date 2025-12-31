@@ -21,31 +21,34 @@
             background: #05050f; overflow: hidden; perspective: 1000px;
         }
 
-        /* الماوس الدائري */
-        .cursor {
-            width: 20px; height: 20px; border: 2px solid var(--primary);
-            border-radius: 50%; position: fixed; pointer-events: none;
-            z-index: 9999; transform: translate(-50%, -50%);
-            box-shadow: 0 0 15px var(--primary); transition: transform 0.1s ease-out;
-        }
-
-        /* تأثير الطائرة الورقية */
-        .paper-plane {
-            position: absolute;
-            color: rgba(255, 255, 255, 0.4);
+        /* مؤشر الماوس على شكل طائرة ورقية صغيرة */
+        .cursor-plane {
+            position: fixed;
+            top: 0; left: 0;
+            width: 30px; height: 30px;
+            color: var(--primary);
             font-size: 24px;
-            z-index: 2;
-            filter: drop-shadow(0 0 5px var(--primary));
-            animation: flyPath 15s linear infinite;
             pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease-out;
+            filter: drop-shadow(0 0 8px var(--primary));
         }
 
-        @keyframes flyPath {
-            0% { transform: translate(-10vw, 110vh) rotate(45deg); opacity: 0; }
-            10% { opacity: 1; }
-            40% { transform: translate(50vw, 50vh) rotate(10deg); }
-            60% { transform: translate(110vw, -10vh) rotate(-20deg); }
-            100% { transform: translate(-10vw, 110vh) rotate(45deg); opacity: 0; }
+        /* طائرة ورقية ثانية تطير في الخلفية */
+        .bg-plane {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 40px;
+            z-index: 1;
+            animation: fancyFly 20s linear infinite;
+        }
+
+        @keyframes fancyFly {
+            0% { transform: translate(-10vw, 50vh) rotate(30deg); }
+            25% { transform: translate(30vw, 10vh) rotate(0deg); }
+            50% { transform: translate(110vw, 40vh) rotate(20deg); }
+            75% { transform: translate(50vw, 90vh) rotate(-10deg); }
+            100% { transform: translate(-10vw, 50vh) rotate(30deg); }
         }
 
         .aurora {
@@ -64,20 +67,19 @@
 
         .glass-card {
             width: 340px; background: var(--glass);
-            backdrop-filter: blur(20px); border: 1px solid var(--border);
-            border-radius: 25px; padding: 25px; text-align: center;
+            backdrop-filter: blur(25px); border: 1px solid var(--border);
+            border-radius: 30px; padding: 25px; text-align: center;
             box-shadow: 0 25px 50px rgba(0,0,0,0.5);
         }
 
         .section-box {
             border: 1px solid var(--border);
-            border-radius: 15px; padding: 15px; margin-bottom: 15px;
+            border-radius: 20px; padding: 15px; margin-bottom: 15px;
             background: rgba(255,255,255,0.02);
         }
 
         .crown-box svg { width: 50px; fill: #ffcc00; filter: drop-shadow(0 0 10px var(--gold)); }
-        h1 { color: #fff; font-size: 1.5rem; font-weight: 900; margin: 5px 0; }
-        .badge { color: var(--primary); font-size: 0.65rem; font-weight: 700; display: block; margin-bottom: 5px; }
+        h1 { color: #fff; font-size: 1.5rem; font-weight: 900; }
 
         .timer-frame { display: flex; align-items: center; justify-content: center; gap: 15px; }
         .circle {
@@ -95,23 +97,23 @@
             display: flex; justify-content: space-between; align-items: center;
             transition: 0.3s;
         }
-        .btn:hover { transform: scale(1.02); background: rgba(255,255,255,0.1); border-color: white; }
+        .btn:hover { background: rgba(0, 242, 255, 0.2); border-color: white; transform: scale(1.02); }
         
-        /* أيقونات ملونة حقيقية */
+        /* أيقونات حقيقية */
         .fa-telegram { color: #26A5E4; }
         .fa-instagram { color: #E4405F; }
         .fa-x-twitter { color: #fff; }
-        .fa-share-nodes { color: var(--gold); }
 
-        .btn-main { background: linear-gradient(45deg, var(--secondary), var(--primary)) !important; border: none; box-shadow: 0 0 15px rgba(0, 242, 255, 0.4); }
-
+        .btn-main { background: linear-gradient(45deg, var(--secondary), var(--primary)) !important; border: none; }
         .footer { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 15px; }
     </style>
 </head>
 <body>
-    <div class="cursor" id="cursor"></div>
+    <div class="cursor-plane" id="plane-cursor">
+        <i class="fas fa-paper-plane"></i>
+    </div>
 
-    <i class="fas fa-paper-plane paper-plane"></i>
+    <i class="fas fa-paper-plane bg-plane"></i>
 
     <div class="aurora"></div>
 
@@ -122,58 +124,63 @@
                     <svg viewBox="0 0 100 100"><path d="M10,80 L90,80 L100,30 L75,50 L50,20 L25,50 L0,30 Z"/></svg>
                 </div>
                 <h1>KHALIL TICH</h1>
-                <span class="badge">PREMIUM CENTER ✅</span>
+                <p style="color: var(--primary); font-size: 0.7rem; font-weight: bold;">DIRECT DOWNLOAD CENTER</p>
             </div>
 
             <div class="section-box" id="timer-section">
                 <div class="timer-frame">
                     <div class="circle" id="seconds">10</div>
                     <div style="text-align: right;">
-                        <p style="color: #fff; font-size: 0.8rem; font-weight: bold;">انتظر لحظة...</p>
-                        <p style="color: #ccc; font-size: 0.6rem;">جاري تحضير الرابط الآمن</p>
+                        <p style="color: #fff; font-size: 0.8rem; font-weight: bold;">تحليق نحو الرابط...</p>
+                        <p style="color: #ccc; font-size: 0.6rem;">انتظر لحظة من فضلك</p>
                     </div>
                 </div>
             </div>
 
             <div class="links-list">
                 <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" class="btn btn-main" style="display: none;">
-                    <span>تحميل مباشر الآن</span>
-                    <i class="fas fa-bolt"></i>
+                    <span>إبدأ التحميل الآن</span>
+                    <i class="fas fa-paper-plane"></i>
                 </a>
 
                 <a href="https://instagram.com/free7styel" target="_blank" class="btn">
-                    <span>تابعنا على إنستغرام</span>
+                    <span>Instagram</span>
                     <i class="fab fa-instagram"></i>
                 </a>
 
                 <a href="https://t.me/free7styel" target="_blank" class="btn">
-                    <span>قناة التليجرام</span>
+                    <span>Telegram</span>
                     <i class="fab fa-telegram"></i>
-                </a>
-
-                <a href="https://twitter.com/free7styel" target="_blank" class="btn">
-                    <span>تويتر (X)</span>
-                    <i class="fab fa-x-twitter"></i>
                 </a>
 
                 <div class="btn" style="cursor:pointer" onclick="shareSite()">
                     <span>مشاركة الموقع</span>
-                    <i class="fas fa-share-nodes"></i>
+                    <i class="fas fa-share-nodes" style="color: var(--gold);"></i>
                 </div>
             </div>
 
-            <p class="footer">DESIGNED BY KHALIL TICH • 2025</p>
+            <p class="footer">KHALIL TICH • 2025</p>
         </div>
     </div>
 
     <script>
         const container = document.getElementById('card-container');
-        const cursor = document.getElementById('cursor');
+        const plane = document.getElementById('plane-cursor');
         
+        let lastX = 0;
+
         document.addEventListener('mousemove', (e) => {
-            // تحريك الماوس الدائري
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            // تحريك الطائرة الماوس
+            plane.style.left = e.clientX + 'px';
+            plane.style.top = e.clientY + 'px';
+
+            // تدوير الطائرة حسب اتجاه الحركة
+            if (e.clientX > lastX) {
+                plane.style.transform = 'translate(-50%, -50%) rotate(15deg)';
+            } else {
+                plane.style.transform = 'translate(-50%, -50%) rotate(-15deg)';
+            }
+            lastX = e.clientX;
             
             // تحريك البطاقة 3D
             let x = (window.innerWidth / 2 - e.pageX) / 20;
@@ -195,7 +202,7 @@
 
         function shareSite() {
             navigator.clipboard.writeText(window.location.href);
-            alert('تم نسخ الرابط! انشره الآن.');
+            alert('تم نسخ الرابط بنجاح!');
         }
     </script>
 </body>
