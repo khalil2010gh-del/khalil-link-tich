@@ -22,7 +22,6 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        /* الطائرة الورقية كمؤشر للماوس */
         .cursor-plane {
             position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
             color: var(--primary); font-size: 24px; transition: transform 0.1s ease-out;
@@ -45,45 +44,42 @@
             text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.7);
         }
 
-        /* العداد مع تأثير السكنر (الماسح الضوئي) */
-        .timer-scanner-box {
-            position: relative; padding: 25px; border-radius: 20px;
-            background: rgba(0, 0, 0, 0.5); border: 1px solid var(--border);
-            margin-bottom: 20px; overflow: hidden; /* ضروري لإخفاء الخط خارج الصندوق */
+        /* إضافة تأثير السكنر هنا */
+        .timer-box-pro {
+            position: relative; padding: 20px; border-radius: 20px;
+            background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border);
+            margin-bottom: 20px; overflow: hidden; /* لحصر الخط المتوهج */
         }
 
-        /* خط السكنر المتوهج */
         .scanner-line {
             position: absolute;
-            left: 0; width: 100%; height: 4px;
+            top: 0; left: 0; width: 100%; height: 3px;
             background: var(--primary);
             box-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary);
-            z-index: 5;
-            animation: scanMove 2s ease-in-out infinite;
+            z-index: 10;
+            animation: scanMove 2s linear infinite;
         }
 
         @keyframes scanMove {
-            0% { top: 0; opacity: 0; }
-            50% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
         }
 
         #seconds {
-            font-family: 'Orbitron', sans-serif; font-size: 4rem;
+            font-family: 'Orbitron', sans-serif; font-size: 3.5rem;
             font-weight: 900; color: #fff; display: block;
-            text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+            text-shadow: 0 0 20px var(--primary);
             line-height: 1; margin-bottom: 5px;
-            position: relative; z-index: 2;
         }
-
-        .timer-label { color: var(--primary); font-size: 0.75rem; font-weight: bold; letter-spacing: 2px; }
+        .timer-label { color: var(--primary); font-size: 0.7rem; letter-spacing: 2px; font-weight: bold; }
 
         .section-box {
             background: rgba(255,255,255,0.03); border: 1px solid var(--border);
             border-radius: 20px; padding: 15px; margin-bottom: 15px;
         }
 
-        h1 { font-size: 1.5rem; color: #fff; font-weight: 900; }
+        h1 { font-size: 1.4rem; color: #fff; font-weight: 900; letter-spacing: 1px; }
         
         .links-list { display: flex; flex-direction: column; gap: 12px; }
         .btn {
@@ -94,7 +90,6 @@
         }
         .btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); border-color: #fff; }
 
-        /* أيقونات السوشيال ميديا ملونة */
         .fa-telegram { color: #26A5E4; } 
         .fa-instagram { color: #E4405F; } 
         .fa-x-twitter { color: #ffffff; }
@@ -102,7 +97,6 @@
         .btn-download {
             background: linear-gradient(45deg, var(--secondary), var(--primary)) !important;
             border: none; box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3);
-            font-family: 'Orbitron', sans-serif; letter-spacing: 1px;
         }
 
         .footer { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 20px; font-weight: bold; }
@@ -118,18 +112,18 @@
             <div class="section-box">
                 <i class="fas fa-crown" style="color: var(--gold); font-size: 1.5rem; margin-bottom: 10px; filter: drop-shadow(0 0 10px var(--gold));"></i>
                 <h1>KHALIL TICH</h1>
-                <p style="color: var(--primary); font-size: 0.6rem; font-weight: bold; letter-spacing: 2px;">PREMIUM SYSTEM access</p>
+                <p style="color: var(--primary); font-size: 0.6rem; font-weight: bold;">PREMIUM ACCESS</p>
             </div>
 
-            <div id="timer-container" class="timer-scanner-box">
+            <div id="timer-container" class="timer-box-pro">
                 <div class="scanner-line"></div> <span id="seconds">10</span>
-                <span class="timer-label">SCANNING SECURITY...</span>
+                <span class="timer-label">SCANNING SYSTEM...</span>
             </div>
 
             <div class="links-list">
                 <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" class="btn btn-download" style="display: none;">
-                    <span>إفتح الرابط الآمن</span>
-                    <i class="fas fa-unlock-alt"></i>
+                    <span>تحميل الآن</span>
+                    <i class="fas fa-download"></i>
                 </a>
 
                 <a href="https://instagram.com/free7styel" target="_blank" class="btn">
@@ -149,7 +143,7 @@
 
                 <div class="btn" style="cursor:pointer" onclick="shareSite()">
                     <span>مشاركة الموقع</span>
-                    <i class="fas fa-share-nodes" style="color: var(--gold);"></i>
+                    <i class="fas fa-share-nodes"></i>
                 </div>
             </div>
 
@@ -166,7 +160,6 @@
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
             
-            // ميلان الطائرة حسب اتجاه الماوس
             if (e.clientX > lastX) {
                 cursor.style.transform = 'translate(-50%, -50%) rotate(20deg)';
             } else {
@@ -179,7 +172,6 @@
             container.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
         });
 
-        // كود العداد
         let timeLeft = 10;
         let timer = setInterval(() => {
             timeLeft--;
@@ -187,9 +179,7 @@
             
             if(timeLeft <= 3) {
                 document.getElementById('seconds').style.color = "#ff4444";
-                // تغيير لون خط السكنر للأحمر في آخر 3 ثواني
                 document.querySelector('.scanner-line').style.background = "#ff4444";
-                document.querySelector('.scanner-line').style.boxShadow = "0 0 15px #ff4444";
             }
 
             if(timeLeft <= 0) {
@@ -201,7 +191,7 @@
 
         function shareSite() {
             navigator.clipboard.writeText(window.location.href);
-            alert('تم نسخ الرابط! انشره الآن.');
+            alert('تم نسخ الرابط!');
         }
     </script>
 </body>
