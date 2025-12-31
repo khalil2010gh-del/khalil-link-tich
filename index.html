@@ -84,12 +84,34 @@
         <div class="badge">DIRECT DOWNLOAD CENTER ✅</div>
 
         <div class="links-grid">
-            <a href="https://linkjust.com/khalil-link" target="_blank" class="btn btn-large">
-                <span class="online-dot"></span>
-                <span>تنزيل مباشر لتطبيقات apk/exe</span>
-                <i class="fas fa-cloud-arrow-down" style="margin-right: auto; color: var(--primary); font-size: 1.4rem;"></i>
-            </a>
+          <div id="download-section" style="margin-top: 20px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; border: 1px dashed var(--primary);">
+    
+    <div id="timer-box">
+        <p style="color: #eee; font-size: 0.9rem; margin-bottom: 10px;">يتم الآن فحص الرابط وتجهيز ملف التحميل...</p>
+        <div style="font-size: 2rem; color: var(--primary); font-weight: 900;">
+            <span id="seconds">10</span>
+        </div>
+    </div>
 
+    <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" target="_blank" class="btn btn-large" style="display: none; border: 2px solid var(--primary); box-shadow: 0 0 20px var(--primary);">
+        <span class="online-dot"></span>
+        <span>جاهز! اضغط للتحميل المباشر</span>
+        <i class="fas fa-bolt" style="margin-right: auto; color: var(--gold);"></i>
+    </a>
+</div>
+
+<script>
+    let timeLeft = 10;
+    let downloadTimer = setInterval(function(){
+        timeLeft--;
+        document.getElementById("seconds").textContent = timeLeft;
+        if(timeLeft <= 0){
+            clearInterval(downloadTimer);
+            document.getElementById("timer-box").style.display = "none";
+            document.getElementById("download-btn").style.display = "flex";
+        }
+    }, 1000);
+</script>
             <a href="https://t.me/free7styel" target="_blank" class="btn">
                 <i class="fab fa-telegram" style="color: #0088cc;"></i>
                 <span>تليجرام</span>
@@ -128,6 +150,7 @@
 </body>
 
 </html>
+
 
 
 
