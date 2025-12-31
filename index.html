@@ -21,16 +21,14 @@
             background: #05050f; overflow: hidden; perspective: 1000px;
         }
 
-        /* خلفية الأورورا المتحركة */
         .aurora {
             position: absolute; width: 200%; height: 200%;
             background: radial-gradient(circle at 20% 30%, var(--secondary) 0%, transparent 40%),
                         radial-gradient(circle at 80% 70%, var(--primary) 0%, transparent 40%);
-            filter: blur(80px); animation: rotateBG 20s linear infinite; opacity: 0.2;
+            filter: blur(80px); animation: rotateBG 20s linear infinite; opacity: 0.15;
         }
         @keyframes rotateBG { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* البطاقة التي تتبع الماوس */
         .container {
             position: relative; z-index: 10;
             transition: transform 0.1s ease-out;
@@ -39,47 +37,56 @@
 
         .glass-card {
             width: 340px; background: var(--glass);
-            backdrop-filter: blur(20px); border: 1px solid var(--border);
-            border-radius: 25px; padding: 25px; text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            backdrop-filter: blur(25px); border: 1px solid var(--border);
+            border-radius: 30px; padding: 25px; text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
         }
 
-        /* إطارات منظمة للأقسام */
         .section-box {
             border: 1px solid var(--border);
-            border-radius: 15px; padding: 15px; margin-bottom: 15px;
+            border-radius: 20px; padding: 15px; margin-bottom: 12px;
             background: rgba(255,255,255,0.02);
         }
 
-        .crown-box svg { width: 50px; fill: url(#goldGrad); filter: drop-shadow(0 0 10px var(--gold)); }
-        h1 { color: #fff; font-size: 1.5rem; font-weight: 900; margin: 5px 0; }
-        .badge { color: var(--primary); font-size: 0.65rem; font-weight: 700; display: block; margin-bottom: 5px; }
+        .crown-box svg { width: 55px; fill: url(#goldGrad); filter: drop-shadow(0 0 10px var(--gold)); }
+        h1 { color: #fff; font-size: 1.6rem; font-weight: 900; margin: 5px 0; letter-spacing: 1px; }
+        .badge { color: var(--primary); font-size: 0.7rem; font-weight: 700; display: block; opacity: 0.8; }
 
-        /* العداد الدائري داخل إطار */
-        .timer-frame {
-            display: flex; align-items: center; justify-content: center; gap: 15px;
-        }
+        /* العداد الدائري */
+        .timer-frame { display: flex; align-items: center; justify-content: center; gap: 12px; }
         .circle {
-            width: 50px; height: 50px; border-radius: 50%;
-            border: 2px solid var(--primary); display: flex;
+            width: 55px; height: 55px; border-radius: 50%;
+            border: 3px solid var(--primary); display: flex;
             align-items: center; justify-content: center;
-            font-weight: 900; color: #fff; box-shadow: 0 0 10px var(--primary);
+            font-size: 1.4rem; font-weight: 900; color: #fff;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
         }
 
-        /* الأزرار مرتبة في إطارات */
+        /* قائمة الأزرار مع أيقونات حقيقية */
         .links-list { display: flex; flex-direction: column; gap: 10px; }
         .btn {
             background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-            padding: 12px 15px; border-radius: 12px; text-decoration: none;
-            color: #fff; font-size: 0.85rem; font-weight: 700;
+            padding: 14px 18px; border-radius: 15px; text-decoration: none;
+            color: #fff; font-size: 0.9rem; font-weight: 700;
             display: flex; justify-content: space-between; align-items: center;
-            transition: 0.3s;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .btn:hover { background: var(--primary); color: #000; }
-        
-        .btn-main { background: linear-gradient(45deg, var(--secondary), var(--primary)) !important; border: none; }
+        .btn:hover { transform: scale(1.03); background: rgba(255,255,255,0.1); border-color: #fff; }
 
-        .footer { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 15px; }
+        /* ألوان الأيقونات الحقيقية */
+        .fa-telegram { color: #26A5E4; font-size: 1.3rem; }
+        .fa-instagram { color: #E4405F; font-size: 1.3rem; }
+        .fa-share-alt { color: var(--gold); font-size: 1.3rem; }
+        .fa-bolt { color: var(--primary); }
+
+        .btn-main { 
+            background: linear-gradient(45deg, #7000ff, #00f2ff) !important; 
+            border: none; box-shadow: 0 5px 15px rgba(112, 0, 255, 0.4);
+            animation: pulse-border 2s infinite;
+        }
+        @keyframes pulse-border { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
+
+        .footer { font-size: 0.65rem; color: rgba(255,255,255,0.2); margin-top: 15px; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -89,54 +96,66 @@
         <div class="glass-card">
             <div class="section-box">
                 <div class="crown-box">
-                    <svg viewBox="0 0 100 100"><path d="M10,80 L90,80 L100,30 L75,50 L50,20 L25,50 L0,30 Z" fill="#ffcc00"/></svg>
+                    <svg viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#fff176;" /><stop offset="100%" style="stop-color:#ffcc00;" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M10,80 L90,80 L100,30 L75,50 L50,20 L25,50 L0,30 Z" />
+                    </svg>
                 </div>
                 <h1>KHALIL TICH</h1>
-                <span class="badge">PREMIUM CENTER</span>
+                <span class="badge">DIRECT DOWNLOAD CENTER ✅</span>
             </div>
 
             <div class="section-box" id="timer-section">
                 <div class="timer-frame">
                     <div class="circle" id="seconds">10</div>
                     <div style="text-align: right;">
-                        <p style="color: #fff; font-size: 0.8rem; font-weight: bold;">انتظر لحظة...</p>
-                        <p style="color: #ccc; font-size: 0.6rem;">جاري فحص الرابط آمن 100%</p>
+                        <p style="color: #fff; font-size: 0.85rem; font-weight: 900;">جاري تحضير الملف...</p>
+                        <p style="color: #00f2ff; font-size: 0.65rem; font-weight: bold;">يرجى الانتظار قليلاً</p>
                     </div>
                 </div>
             </div>
 
             <div class="links-list">
                 <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" class="btn btn-main" style="display: none;">
-                    <span>تحميل الآن (رابط مباشر)</span>
+                    <span>تحميل مباشر الآن</span>
                     <i class="fas fa-bolt"></i>
                 </a>
 
-                <a href="https://t.me/free7styel" class="btn">
+                <a href="https://instagram.com/free7styel" target="_blank" class="btn">
+                    <span>تابعنا على إنستغرام</span>
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+                <a href="https://t.me/free7styel" target="_blank" class="btn">
                     <span>قناة التليجرام</span>
                     <i class="fab fa-telegram"></i>
                 </a>
 
-                <div class="btn" style="cursor:pointer" onclick="alert('تم النسخ!')">
+                <div class="btn" style="cursor:pointer" onclick="shareSite()">
                     <span>مشاركة الموقع</span>
-                    <i class="fas fa-share"></i>
+                    <i class="fas fa-share-alt"></i>
                 </div>
             </div>
 
-            <p class="footer">DESIGNED BY KHALIL TICH • 2025</p>
+            <p class="footer">DESIGNED BY KHALIL TICH • ALGERIA 2025</p>
         </div>
     </div>
 
     <script>
         const container = document.getElementById('card-container');
         
-        // حركة تتبع الماوس 3D
+        // تأثير تتبع الماوس ثلاثي الأبعاد
         document.addEventListener('mousemove', (e) => {
-            let x = (window.innerWidth / 2 - e.pageX) / 20;
-            let y = (window.innerHeight / 2 - e.pageY) / 20;
+            let x = (window.innerWidth / 2 - e.pageX) / 15;
+            let y = (window.innerHeight / 2 - e.pageY) / 15;
             container.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
         });
 
-        // العداد
+        // كود العداد والتحويل للزر
         let timeLeft = 10;
         let timer = setInterval(() => {
             timeLeft--;
@@ -147,6 +166,11 @@
                 document.getElementById('download-btn').style.display = 'flex';
             }
         }, 1000);
+
+        function shareSite() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('تم نسخ رابط الموقع بنجاح! انشره الآن.');
+        }
     </script>
 </body>
 </html>
