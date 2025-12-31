@@ -26,48 +26,73 @@
             filter: blur(100px); animation: rotateBG 25s linear infinite; opacity: 0.35; z-index: 1;
         }
         @keyframes rotateBG { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        /* تعديل حجم البطاقة لتناسب الشاشة */
         .glass-card {
-            position: relative; width: 400px; background: var(--glass);
+            position: relative; width: 340px; background: var(--glass);
             backdrop-filter: blur(35px) saturate(200%); border: 1px solid var(--border);
-            border-radius: 50px; padding: 40px 25px; text-align: center; z-index: 10;
+            border-radius: 30px; padding: 20px 15px; text-align: center; z-index: 10;
             box-shadow: 0 40px 100px rgba(0,0,0,0.8); transition: 0.3s ease-out;
         }
+
         .crown-box {
-            position: relative; display: inline-block; margin-bottom: 20px;
-            filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.6));
+            position: relative; display: inline-block; margin-bottom: 10px;
+            filter: drop-shadow(0 0 15px rgba(255, 204, 0, 0.5));
             animation: float 4s ease-in-out infinite;
         }
-        .crown-box svg { width: 100px; height: auto; fill: url(#goldGrad); }
+        .crown-box svg { width: 70px; height: auto; fill: url(#goldGrad); }
+        
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(-3deg); }
-            50% { transform: translateY(-15px) rotate(3deg); }
+            50% { transform: translateY(-10px) rotate(3deg); }
         }
-        h1 { color: #fff; font-size: 2.2rem; font-weight: 900; margin-bottom: 5px; }
+
+        h1 { color: #fff; font-size: 1.6rem; font-weight: 900; margin-bottom: 2px; }
+        
         .badge {
             background: rgba(0, 242, 255, 0.1); color: var(--primary);
-            padding: 5px 20px; border-radius: 50px; font-size: 0.75rem;
+            padding: 3px 15px; border-radius: 50px; font-size: 0.65rem;
             font-weight: 800; border: 1px solid rgba(0, 242, 255, 0.3);
-            display: inline-block; margin-bottom: 30px;
+            display: inline-block; margin-bottom: 15px;
         }
-        .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+        .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
         .btn {
             background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
-            padding: 15px 10px; border-radius: 20px; text-decoration: none;
+            padding: 12px 8px; border-radius: 15px; text-decoration: none;
             color: #fff; font-weight: 700; display: flex; flex-direction: column;
-            align-items: center; gap: 8px; transition: 0.4s; font-size: 0.85rem;
+            align-items: center; gap: 5px; transition: 0.4s; font-size: 0.75rem;
         }
+
         .btn:hover {
-            background: rgba(255, 255, 255, 0.1); transform: translateY(-5px);
-            border-color: var(--primary); box-shadow: 0 10px 20px rgba(0, 242, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1); transform: translateY(-3px);
+            border-color: var(--primary);
         }
-        .btn-large { grid-column: span 2; flex-direction: row !important; padding: 20px !important; background: rgba(0, 242, 255, 0.07) !important; font-size: 1rem; }
-        .footer { margin-top: 35px; color: rgba(255,255,255,0.2); font-size: 0.65rem; }
-        .online-dot { width: 10px; height: 10px; background: #00ff00; border-radius: 50%; display: inline-block; margin-left: 8px; box-shadow: 0 0 10px #00ff00; animation: pulse 1.5s infinite; }
+
+        /* تنسيق العداد المدمج */
+        #download-section {
+            grid-column: span 2; margin-bottom: 5px;
+        }
+        .timer-container {
+            padding: 10px; border: 1px dashed var(--primary); border-radius: 15px;
+            background: rgba(0, 242, 255, 0.03);
+        }
+
+        .btn-large { 
+            grid-column: span 2; flex-direction: row !important; 
+            padding: 15px !important; background: rgba(0, 242, 255, 0.15) !important; 
+            font-size: 0.9rem; border: 1px solid var(--primary);
+        }
+
+        .footer { margin-top: 20px; color: rgba(255,255,255,0.2); font-size: 0.6rem; }
+        .online-dot { width: 8px; height: 8px; background: #00ff00; border-radius: 50%; display: inline-block; margin-left: 5px; box-shadow: 0 0 8px #00ff00; animation: pulse 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
     </style>
 </head>
 <body>
     <div class="aurora"></div>
+    
     <div class="glass-card" id="card">
         <div class="crown-box">
             <svg viewBox="0 0 100 100">
@@ -80,32 +105,24 @@
                 <circle cx="50" cy="15" r="5" />
             </svg>
         </div>
+        
         <h1>KHALIL TICH</h1>
         <div class="badge">DIRECT DOWNLOAD CENTER ✅</div>
 
         <div class="links-grid">
-          <div id="download-section" style="margin-top: 20px; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px; border: 1px dashed var(--primary);">
-    
-    <div id="timer-box">
-        <p style="color: #eee; font-size: 0.9rem; margin-bottom: 10px;">يتم الآن فحص الرابط وتجهيز ملف التحميل...</p>
-        <div style="font-size: 2rem; color: var(--primary); font-weight: 900;">
-            <span id="seconds">10</span>
-        </div>
-    </div>
-<div id="download-section" style="grid-column: span 2; margin-top: 5px;">
-    <div id="timer-box" style="padding: 10px; border: 1px dashed var(--primary); border-radius: 15px;">
-        <p style="color: #ccc; font-size: 0.7rem; margin: 0;">جاري تجهيز الرابط...</p>
-        <span id="seconds" style="font-size: 1.2rem; color: var(--primary); font-weight: bold;">10</span>
-    </div>
-    <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" target="_blank" class="btn btn-large" style="display: none; padding: 12px !important;">
-        <span class="online-dot"></span>
-        <span style="font-size: 0.9rem;">اضغط للتحميل المباشر</span>
-    </a>
-</div>
-   
-</script>
+            <div id="download-section">
+                <div id="timer-box" class="timer-container">
+                    <p style="color: #ccc; font-size: 0.7rem; margin: 0;">جاري تجهيز الرابط المباشر...</p>
+                    <span id="seconds" style="font-size: 1.3rem; color: var(--primary); font-weight: bold;">10</span>
+                </div>
+                
+                <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" target="_blank" class="btn btn-large" style="display: none;">
+                    <span class="online-dot"></span>
+                    <span>اضغط هنا للتحميل المباشر</span>
+                    <i class="fas fa-cloud-arrow-down" style="margin-right: auto; color: var(--primary);"></i>
+                </a>
+            </div>
 
-</script>
             <a href="https://t.me/free7styel" target="_blank" class="btn">
                 <i class="fab fa-telegram" style="color: #0088cc;"></i>
                 <span>تليجرام</span>
@@ -126,29 +143,40 @@
                 <span>مشاركة</span>
             </div>
         </div>
+        
         <p class="footer">DESIGNED BY KHALIL TICH • ALGERIA 2025</p>
     </div>
 
     <script>
+        // كود العداد
+        let timeLeft = 10;
+        let downloadTimer = setInterval(function(){
+            timeLeft--;
+            const secondsElement = document.getElementById("seconds");
+            if(secondsElement) secondsElement.textContent = timeLeft;
+            
+            if(timeLeft <= 0){
+                clearInterval(downloadTimer);
+                document.getElementById("timer-box").style.display = "none";
+                document.getElementById("download-btn").style.display = "flex";
+            }
+        }, 1000);
+
+        // تأثير حركة البطاقة
         const card = document.getElementById('card');
         document.addEventListener('mousemove', (e) => {
             let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
             let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
             card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
         });
+
         function shareSite() {
             navigator.clipboard.writeText(window.location.href);
             alert('تم نسخ رابط الصفحة بنجاح!');
         }
     </script>
 </body>
-
 </html>
-
-
-
-
-
 
 
 
