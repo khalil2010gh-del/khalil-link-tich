@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -5,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHALIL TICH | Dz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Orbitron:wght@500;900&family=Rajdhani:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Orbitron:wght@500;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00f2ff;
@@ -22,11 +23,11 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        /* الماوس الطائرة الورقية */
+        /* إعادة الطائرة الورقية كمؤشر للماوس */
         .cursor-plane {
             position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
-            color: var(--primary); font-size: 22px; transition: transform 0.1s ease-out;
-            filter: drop-shadow(0 0 8px var(--primary)); transform: translate(-50%, -50%);
+            color: var(--primary); font-size: 24px; transition: transform 0.1s ease-out;
+            filter: drop-shadow(0 0 10px var(--primary)); transform: translate(-50%, -50%);
         }
 
         .aurora {
@@ -45,60 +46,52 @@
             text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.7);
         }
 
-        /* شكل العداد الجديد والمبهر */
+        /* العداد الرقمي المطور */
         .timer-box-pro {
             position: relative; padding: 20px; border-radius: 20px;
-            background: rgba(0, 0, 0, 0.3); border: 1px inset var(--border);
-            margin-bottom: 20px; overflow: hidden;
+            background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border);
+            margin-bottom: 20px;
         }
-        .timer-box-pro::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-            animation: scanning 2s linear infinite;
-        }
-        @keyframes scanning { 0% { top: 0; } 100% { top: 100%; } }
-
         #seconds {
             font-family: 'Orbitron', sans-serif; font-size: 3.5rem;
             font-weight: 900; color: #fff; display: block;
-            text-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary);
-            line-height: 1; margin-bottom: 10px;
+            text-shadow: 0 0 20px var(--primary);
+            line-height: 1; margin-bottom: 5px;
         }
-        .timer-label { font-family: 'Rajdhani', sans-serif; color: var(--primary); font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; }
+        .timer-label { color: var(--primary); font-size: 0.7rem; letter-spacing: 2px; font-weight: bold; }
 
         .section-box {
             background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            border-radius: 20px; padding: 15px; margin-bottom: 20px;
+            border-radius: 20px; padding: 15px; margin-bottom: 15px;
         }
 
-        h1 { font-size: 1.4rem; color: #fff; font-weight: 900; letter-spacing: 1px; margin-bottom: 5px; }
+        h1 { font-size: 1.4rem; color: #fff; font-weight: 900; letter-spacing: 1px; }
         
         .links-list { display: flex; flex-direction: column; gap: 12px; }
         .btn {
             background: rgba(255,255,255,0.05); border: 1px solid var(--border);
             padding: 14px 20px; border-radius: 15px; text-decoration: none;
             color: #fff; font-weight: 700; display: flex; justify-content: space-between;
-            align-items: center; transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-size: 0.9rem;
+            align-items: center; transition: 0.3s; font-size: 0.9rem;
         }
-        .btn:hover { background: rgba(255,255,255,0.1); border-color: #fff; transform: translateY(-3px); }
+        .btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); border-color: #fff; }
 
-        /* أيقونات التطبيقات الحقيقية */
+        /* أيقونات التطبيقات */
         .fa-telegram { color: #26A5E4; } 
         .fa-instagram { color: #E4405F; } 
-        .fa-x-twitter { color: #ffffff; } /* أيقونة تويتر X الجديدة باللون الأبيض */
+        .fa-x-twitter { color: #ffffff; } /* تويتر X باللون الأبيض */
 
         .btn-download {
             background: linear-gradient(45deg, var(--secondary), var(--primary)) !important;
             border: none; box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3);
-            font-family: 'Orbitron', sans-serif;
         }
 
-        .footer { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 20px; font-weight: 900; }
+        .footer { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 20px; font-weight: bold; }
     </style>
 </head>
 <body>
     <div class="cursor-plane" id="cursor"><i class="fas fa-paper-plane"></i></div>
+    
     <div class="aurora"></div>
 
     <div class="container" id="card-container">
@@ -106,18 +99,18 @@
             <div class="section-box">
                 <i class="fas fa-crown" style="color: var(--gold); font-size: 1.5rem; margin-bottom: 10px; filter: drop-shadow(0 0 10px var(--gold));"></i>
                 <h1>KHALIL TICH</h1>
-                <p style="color: var(--primary); font-size: 0.6rem; font-weight: bold; letter-spacing: 2px;">SECURE ACCESS HUB</p>
+                <p style="color: var(--primary); font-size: 0.6rem; font-weight: bold;">PREMIUM ACCESS</p>
             </div>
 
             <div id="timer-container" class="timer-box-pro">
                 <span id="seconds">10</span>
-                <span class="timer-label">System Checking</span>
+                <span class="timer-label">جاري تحضير الرابط...</span>
             </div>
 
             <div class="links-list">
                 <a href="ضع_رابط_LINKJUST_هنا" id="download-btn" class="btn btn-download" style="display: none;">
-                    <span>GET SECURE LINK</span>
-                    <i class="fas fa-shield-halved"></i>
+                    <span>تحميل الآن</span>
+                    <i class="fas fa-download"></i>
                 </a>
 
                 <a href="https://instagram.com/free7styel" target="_blank" class="btn">
@@ -136,12 +129,12 @@
                 </a>
 
                 <div class="btn" style="cursor:pointer" onclick="shareSite()">
-                    <span>Share Site</span>
+                    <span>مشاركة الموقع</span>
                     <i class="fas fa-share-nodes"></i>
                 </div>
             </div>
 
-            <p class="footer">DESIGNED BY KHALIL TICH • ALGERIA 2025</p>
+            <p class="footer">DESIGNED BY KHALIL TICH • 2025</p>
         </div>
     </div>
 
@@ -153,7 +146,13 @@
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
-            cursor.style.transform = `translate(-50%, -50%) rotate(${e.clientX > lastX ? '15deg' : '-15deg'})`;
+            
+            // جعل الطائرة تلتفت يميناً ويساراً حسب الحركة
+            if (e.clientX > lastX) {
+                cursor.style.transform = 'translate(-50%, -50%) rotate(20deg)';
+            } else {
+                cursor.style.transform = 'translate(-50%, -50%) rotate(-20deg)';
+            }
             lastX = e.clientX;
 
             let x = (window.innerWidth / 2 - e.pageX) / 25;
@@ -161,7 +160,7 @@
             container.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
         });
 
-        // العداد الرقمي
+        // العداد
         let timeLeft = 10;
         let timer = setInterval(() => {
             timeLeft--;
@@ -169,7 +168,6 @@
             
             if(timeLeft <= 3) {
                 document.getElementById('seconds').style.color = "#ff4444";
-                document.getElementById('seconds').style.textShadow = "0 0 20px #ff4444";
             }
 
             if(timeLeft <= 0) {
@@ -181,7 +179,7 @@
 
         function shareSite() {
             navigator.clipboard.writeText(window.location.href);
-            alert('تم نسخ الرابط! انشره الآن.');
+            alert('تم نسخ الرابط!');
         }
     </script>
 </body>
