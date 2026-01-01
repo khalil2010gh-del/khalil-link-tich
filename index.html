@@ -7,22 +7,11 @@
     
     <meta name="google-site-verification" content="Yk8qOU6upyW1gQFtdYUCzj29ORjwmNEb8B2n5z0TBPI" />
     
-    <meta name="description" content="موقع خليل تيتش الرسمي لتحميل أحدث التطبيقات والألعاب بروابط مباشرة وسريعة.">
-    <meta name="keywords" content="Khalil Tich, خليل تيتش, تحميل تطبيقات, روابط خليل">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --neon-color: #00f2ff;
             --bg-dark: #0a0a0c;
-            --card-bg: #16161a;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
@@ -31,44 +20,37 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
             overflow: hidden;
         }
 
         .container {
             text-align: center;
-            background: var(--card-bg);
-            padding: 40px;
+            background: #16161a;
+            padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
-            border: 1px solid rgba(0, 242, 255, 0.2);
-            max-width: 400px;
+            border: 1px solid var(--neon-color);
             width: 90%;
-            position: relative;
+            max-width: 400px;
         }
 
         h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
+            color: white;
             text-shadow: 0 0 10px var(--neon-color);
-        }
-
-        .status-text {
-            color: var(--neon-color);
-            margin-bottom: 30px;
-            font-size: 0.9rem;
-            opacity: 0.8;
+            margin-bottom: 20px;
         }
 
         .scanner-box {
             position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 30px;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
             border: 2px solid var(--neon-color);
-            border-radius: 10px;
-            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .scanner-line {
@@ -88,9 +70,7 @@
 
         .timer {
             font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: white;
+            margin: 20px 0;
         }
 
         .btn {
@@ -98,33 +78,17 @@
             background: transparent;
             color: var(--neon-color);
             border: 2px solid var(--neon-color);
-            padding: 15px 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            padding: 12px 25px;
+            font-size: 1.2rem;
             border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             transition: 0.3s;
-            text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
         }
 
         .btn:hover {
             background: var(--neon-color);
             color: black;
-            box-shadow: 0 0 30px var(--neon-color);
-        }
-
-        #loading-dots::after {
-            content: '';
-            animation: dots 1.5s steps(5, end) infinite;
-        }
-
-        @keyframes dots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60% { content: '...'; }
-            80%, 100% { content: ''; }
         }
     </style>
 </head>
@@ -132,48 +96,47 @@
 
     <div class="container">
         <h1>KHALIL TICH</h1>
-        <p class="status-text">SYSTEM SCANNING<span id="loading-dots"></span></p>
-
+        
         <div class="scanner-box">
             <div class="scanner-line"></div>
-            <i class="fas fa-shield-alt" style="font-size: 4rem; margin-top: 40px; color: rgba(0,242,255,0.2);"></i>
+            <i class="fas fa-download" style="font-size: 2rem; color: #333;"></i>
         </div>
 
+        <div id="status">جاري الفحص...</div>
         <div class="timer" id="countdown">10</div>
 
-        <a href="https://linkjust.com/YOUR_LINK" class="btn" id="downloadBtn" onclick="openAds()">تحميل الآن</a>
+        <a href="https://linkjust.com/YOUR_LINK" class="btn" id="downloadBtn" onclick="openAds()">تحميل الملف</a>
     </div>
 
     <script>
-        // الإعدادات
         const CONFIG = {
-            REDIRECT_URL: "https://linkjust.com/YOUR_LINK", // ضع رابط لينكي جاست هنا
-            POP_ADS: "https://www.profitablecpmrate.com/f0m6pntm?key=9013b5d27572d428b4937740f90119e7" // رابط أدستيرا
+            POP_ADS: "https://www.profitablecpmrate.com/f0m6pntm?key=9013b5d27572d428b4937740f90119e7"
         };
 
         let timeLeft = 10;
         const countdownElement = document.getElementById('countdown');
         const downloadBtn = document.getElementById('downloadBtn');
+        const statusText = document.getElementById('status');
 
         const timer = setInterval(() => {
             timeLeft--;
-            countdownElement.textContent = timeLeft;
+            if(timeLeft >= 0) {
+                countdownElement.textContent = timeLeft;
+            }
 
             if (timeLeft <= 0) {
                 clearInterval(timer);
                 countdownElement.style.display = 'none';
                 downloadBtn.style.display = 'inline-block';
-                document.querySelector('.status-text').textContent = 'READY TO DOWNLOAD';
-                document.querySelector('.status-text').style.color = '#00ff00';
+                statusText.textContent = "تم تجهيز الرابط!";
+                statusText.style.color = "#00ff00";
             }
         }, 1000);
 
         function openAds() {
-            // فتح إعلان أدستيرا في نافذة جديدة
             window.open(CONFIG.POP_ADS, '_blank');
         }
     </script>
 </body>
 </html>
-
 
