@@ -3,140 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>KHALIL TICH | 2026</title>
+    <meta name="description" content="موقع خليل تيتش (KHALIL TICH) الرسمي لعام 2026. بوابة التحميل الملكية للحصول على أحدث الروابط المباشرة والتطبيقات الحصرية في الجزائر.">
+    <meta name="keywords" content="Khalil Tich, خليل تيتش, KHALIL TICH 2026, تحميل تطبيقات خليل تيتش, LinkJust Khalil, أرباح خليل تيتش, الجزائر tech">
+    <meta name="author" content="KHALIL TICH">
+    <link rel="canonical" href="https://khalil-tich.netlify.app/">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Orbitron:wght@500;900&display=swap" rel="stylesheet">
     
-    <meta name="google-site-verification" content="Yk8qOU6upyW1gQFtdYUCzj29ORjwmNEb8B2n5z0TBPI" />
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --neon-color: #00f2ff;
-            --bg-dark: #0a0a0c;
-            --card-bg: #16161a;
+            --primary: #00f2ff;
+            --secondary: #7000ff;
+            --pink: #ff00e1;
+            --gold: #ffcc00;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.12);
         }
 
+        /* تم إرجاع الماوس للوضع الطبيعي */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
         body {
-            background-color: var(--bg-dark);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: sans-serif;
+            height: 100vh; display: flex; justify-content: center; align-items: center;
+            background: #02020a; overflow: hidden;
+            font-family: 'Cairo', sans-serif;
         }
 
-        .container {
-            text-align: center;
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
-            border: 1px solid var(--neon-color);
-            width: 90%;
-            max-width: 400px;
+        .aurora {
+            position: absolute; width: 150%; height: 150%;
+            background: radial-gradient(circle at 20% 30%, var(--secondary) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, var(--pink) 0%, transparent 50%);
+            filter: blur(100px); animation: rotateBG 20s linear infinite; opacity: 0.25;
+            z-index: 1;
+        }
+        @keyframes rotateBG { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .container { position: relative; z-index: 10; padding: 15px; width: 100%; max-width: 400px; }
+
+        .glass-card {
+            background: var(--glass); backdrop-filter: blur(40px);
+            border: 1px solid var(--border); border-radius: 45px; padding: 35px 25px;
+            text-align: center; box-shadow: 0 50px 100px rgba(0,0,0,0.8);
         }
 
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px var(--neon-color);
-        }
+        .header-box { margin-bottom: 25px; }
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: #fff; font-weight: 900; letter-spacing: 2px; }
 
-        .scanner-box {
-            position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 20px auto;
-            border: 2px solid var(--neon-color);
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .timer-box-pro {
+            position: relative; padding: 25px; border-radius: 30px;
+            background: rgba(0, 0, 0, 0.5); border: 1px solid var(--primary);
+            margin-bottom: 25px; overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0, 242, 255, 0.1);
         }
 
         .scanner-line {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: var(--neon-color);
-            box-shadow: 0 0 15px var(--neon-color);
-            animation: scan 2s linear infinite;
+            position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            box-shadow: 0 0 20px var(--primary); z-index: 10;
+            animation: scanMove 2.5s ease-in-out infinite;
         }
+        @keyframes scanMove { 0%, 100% { top: 0%; } 50% { top: 95%; } }
 
-        @keyframes scan {
-            0% { top: 0; }
-            50% { top: 100%; }
-            100% { top: 0; }
-        }
+        #seconds { font-family: 'Orbitron', sans-serif; font-size: 4rem; font-weight: 900; color: #fff; text-shadow: 0 0 25px var(--primary); }
 
-        .timer {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
+        .links-list { display: flex; flex-direction: column; gap: 12px; }
+        
         .btn {
-            display: none;
-            background: transparent;
-            color: var(--neon-color);
-            border: 2px solid var(--neon-color);
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border-radius: 50px;
+            padding: 18px 22px; border-radius: 22px; text-decoration: none;
+            color: #fff; font-weight: 900; display: flex; justify-content: space-between;
+            align-items: center; transition: 0.3s; font-size: 1rem;
+            border: 1px solid var(--border); background: rgba(255,255,255,0.05);
             cursor: pointer;
-            text-decoration: none;
-            transition: 0.3s;
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.3);
         }
 
-        .btn:hover {
-            background: var(--neon-color);
-            color: black;
-            box-shadow: 0 0 25px var(--neon-color);
-        }
+        .btn:hover { transform: translateY(-3px); border-color: var(--primary); background: rgba(255,255,255,0.1); }
+
+        .btn-link1 { background: linear-gradient(45deg, var(--secondary), var(--primary)) !important; border: none; box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3); }
+        .btn-link2 { background: linear-gradient(45deg, #f093fb, #f5576c) !important; border: none; box-shadow: 0 10px 20px rgba(245, 87, 108, 0.3); }
+
+        .social-box { display: flex; justify-content: center; gap: 20px; margin-top: 25px; }
+        .social-box a { color: #fff; font-size: 1.5rem; transition: 0.3s; cursor: pointer; }
+        .social-box a:hover { color: var(--primary); transform: translateY(-5px); }
+
+        .footer-2026 { font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-top: 25px; letter-spacing: 2px; font-weight: 900; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
     </style>
 </head>
-<body>
+<body onclick="servePopAd()">
+    <div class="aurora"></div>
 
     <div class="container">
-        <h1>KHALIL TICH</h1>
-        <p style="color: var(--neon-color); opacity: 0.8;">SCANNING SYSTEM...</p>
+        <div class="glass-card">
+            <div class="header-box">
+                <i class="fas fa-crown" style="color: var(--gold); font-size: 2rem; margin-bottom: 10px; filter: drop-shadow(0 0 15px var(--gold));"></i>
+                <h1>KHALIL TICH</h1>
+                <p style="color: var(--primary); font-size: 0.7rem; font-weight: 900; letter-spacing: 3px;">ROYAL SYSTEM 2026</p>
+            </div>
 
-        <div class="scanner-box">
-            <div class="scanner-line"></div>
-            <i class="fas fa-microchip" style="font-size: 3rem; color: rgba(0,242,255,0.2);"></i>
+            <div id="timer-container" class="timer-box-pro">
+                <div class="scanner-line"></div>
+                <span id="seconds">10</span>
+                <p style="color: var(--primary); font-size: 0.6rem; font-weight: bold; margin-top: 10px;">SCANNING FOR ROYAL LINKS...</p>
+            </div>
+
+            <div class="links-list" id="links-group" style="display: none;">
+                <a href="javascript:void(0)" onclick="handleRedirect('LINK_1')" class="btn btn-link1">
+                    <span><i class="fas fa-bolt"></i> GET LINK 1</span>
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+
+                <a href="javascript:void(0)" onclick="handleRedirect('LINK_2')" class="btn btn-link2">
+                    <span><i class="fas fa-star"></i> GET LINK 2</span>
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+
+                <a href="https://t.me/free7styel" target="_blank" class="btn">
+                    <span>Telegram Channel</span>
+                    <i class="fab fa-telegram"></i>
+                </a>
+            </div>
+
+            <div class="social-box">
+                <a href="https://instagram.com/free7styel" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/free7styel" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="javascript:void(0)" onclick="shareSite()"><i class="fas fa-share-node"></i></a>
+            </div>
+
+            <p class="footer-2026">POWERED BY KHALIL TICH • ALGERIA 2026</p>
         </div>
-
-        <div class="timer" id="countdown">10</div>
-
-        <a href="https://linkjust.com/YOUR_LINK" class="btn" id="downloadBtn" onclick="openAds()">DOWNLOAD NOW</a>
     </div>
 
     <script>
         const CONFIG = {
-            POP_ADS: "https://www.profitablecpmrate.com/f0m6pntm?key=9013b5d27572d428b4937740f90119e7"
+            LINK_1: "https://linkjust.com/zEWtv", 
+            LINK_2: "https://linkjust.com/zEWtv", 
+            POP_ADS: "https://www.highrevenuegate.com/z10f8yht?key=6716a546d165f17d747c35e3e2646294"
         };
 
+        // العداد الذكي
         let timeLeft = 10;
-        const countdownElement = document.getElementById('countdown');
-        const downloadBtn = document.getElementById('downloadBtn');
-
-        const timer = setInterval(() => {
+        let timer = setInterval(() => {
             timeLeft--;
-            countdownElement.textContent = timeLeft;
-
-            if (timeLeft <= 0) {
+            document.getElementById('seconds').innerText = timeLeft < 10 ? '0' + timeLeft : timeLeft;
+            if(timeLeft <= 0) {
                 clearInterval(timer);
-                countdownElement.style.display = 'none';
-                downloadBtn.style.display = 'inline-block';
+                document.getElementById('timer-container').style.display = 'none';
+                document.getElementById('links-group').style.display = 'flex';
             }
         }, 1000);
 
-        function openAds() {
+        // وظائف التحويل والربح
+        function handleRedirect(key) {
             window.open(CONFIG.POP_ADS, '_blank');
+            setTimeout(() => { window.location.href = CONFIG[key]; }, 400);
+        }
+
+        let adServed = false;
+        function servePopAd() {
+            if(!adServed) { window.open(CONFIG.POP_ADS, '_blank'); adServed = true; }
+        }
+
+        function shareSite() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('تم نسخ الرابط الملكي! 🚀');
         }
     </script>
 </body>
