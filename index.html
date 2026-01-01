@@ -3,172 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KHALIL TICH | Dz</title>
+    <title>KHALIL TICH | 2026 ROYAL</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Orbitron:wght@500;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #00f2ff;
             --secondary: #7000ff;
+            --pink: #ff00e1;
             --gold: #ffcc00;
-            --glass: rgba(255, 255, 255, 0.02);
-            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.12);
         }
+
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
         
         body {
             height: 100vh; display: flex; justify-content: center; align-items: center;
-            background: #02020a; overflow: hidden; perspective: 1000px;
+            background: #02020a; overflow: hidden; perspective: 1500px;
             font-family: 'Cairo', sans-serif;
         }
 
         .cursor-plane {
             position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
-            color: var(--primary); font-size: 24px; transition: transform 0.1s ease-out;
-            filter: drop-shadow(0 0 10px var(--primary)); transform: translate(-50%, -50%);
+            color: var(--primary); font-size: 24px; transition: transform 0.15s ease-out;
+            filter: drop-shadow(0 0 12px var(--primary)); transform: translate(-50%, -50%);
         }
 
         .aurora {
-            position: absolute; width: 200%; height: 200%;
-            background: radial-gradient(circle at 20% 30%, var(--secondary) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, var(--primary) 0%, transparent 40%);
-            filter: blur(80px); animation: rotateBG 25s linear infinite; opacity: 0.15;
+            position: absolute; width: 150%; height: 150%;
+            background: radial-gradient(circle at 20% 30%, var(--secondary) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, var(--pink) 0%, transparent 50%);
+            filter: blur(100px); animation: rotateBG 20s linear infinite; opacity: 0.25;
         }
         @keyframes rotateBG { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        .container { position: relative; z-index: 10; transform-style: preserve-3d; transition: 0.1s; }
+        .container { position: relative; z-index: 10; transform-style: preserve-3d; transition: 0.2s; padding: 15px; width: 100%; max-width: 400px; }
 
         .glass-card {
-            width: 350px; background: var(--glass); backdrop-filter: blur(30px);
-            border: 1px solid var(--border); border-radius: 35px; padding: 30px 25px;
-            text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+            background: var(--glass); backdrop-filter: blur(40px);
+            border: 1px solid var(--border); border-radius: 45px; padding: 35px 25px;
+            text-align: center; box-shadow: 0 50px 100px rgba(0,0,0,0.8);
         }
 
-        /* إضافة تأثير السكنر هنا */
+        .header-box { margin-bottom: 25px; }
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; color: #fff; font-weight: 900; letter-spacing: 2px; }
+
+        /* سكنر الوقت */
         .timer-box-pro {
-            position: relative; padding: 20px; border-radius: 20px;
-            background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border);
-            margin-bottom: 20px; overflow: hidden; /* لحصر الخط المتوهج */
+            position: relative; padding: 25px; border-radius: 30px;
+            background: rgba(0, 0, 0, 0.5); border: 1px solid var(--primary);
+            margin-bottom: 25px; overflow: hidden;
+            box-shadow: inset 0 0 20px rgba(0, 242, 255, 0.1);
         }
 
         .scanner-line {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 3px;
-            background: var(--primary);
-            box-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary);
-            z-index: 10;
-            animation: scanMove 2s linear infinite;
+            position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            box-shadow: 0 0 20px var(--primary); z-index: 10;
+            animation: scanMove 2.5s ease-in-out infinite;
         }
+        @keyframes scanMove { 0%, 100% { top: 0%; } 50% { top: 95%; } }
 
-        @keyframes scanMove {
-            0% { top: 0%; }
-            50% { top: 100%; }
-            100% { top: 0%; }
-        }
+        #seconds { font-family: 'Orbitron', sans-serif; font-size: 4rem; font-weight: 900; color: #fff; text-shadow: 0 0 25px var(--primary); }
 
-        #seconds {
-            font-family: 'Orbitron', sans-serif; font-size: 3.5rem;
-            font-weight: 900; color: #fff; display: block;
-            text-shadow: 0 0 20px var(--primary);
-            line-height: 1; margin-bottom: 5px;
-        }
-        .timer-label { color: var(--primary); font-size: 0.7rem; letter-spacing: 2px; font-weight: bold; }
-
-        .section-box {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            border-radius: 20px; padding: 15px; margin-bottom: 15px;
-        }
-
-        h1 { font-size: 1.4rem; color: #fff; font-weight: 900; letter-spacing: 1px; }
-        
         .links-list { display: flex; flex-direction: column; gap: 12px; }
+        
+        /* تصميم الأزرار الجميل */
         .btn {
-            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-            padding: 14px 20px; border-radius: 15px; text-decoration: none;
-            color: #fff; font-weight: 700; display: flex; justify-content: space-between;
-            align-items: center; transition: 0.3s; font-size: 0.9rem;
-        }
-        .btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); border-color: #fff; }
-
-        .fa-telegram { color: #26A5E4; } 
-        .fa-instagram { color: #E4405F; } 
-        .fa-x-twitter { color: #ffffff; }
-
-        .btn-download {
-            background: linear-gradient(45deg, var(--secondary), var(--primary)) !important;
-            border: none; box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3);
+            padding: 18px 22px; border-radius: 22px; text-decoration: none;
+            color: #fff; font-weight: 900; display: flex; justify-content: space-between;
+            align-items: center; transition: 0.4s; font-size: 1rem;
+            border: 1px solid var(--border); background: rgba(255,255,255,0.05);
         }
 
-        .footer { font-size: 0.6rem; color: rgba(255,255,255,0.2); margin-top: 20px; font-weight: bold; }
+        .btn:hover { transform: scale(1.05); border-color: var(--primary); background: rgba(255,255,255,0.1); }
+
+        /* أزرار Get Link الملونة */
+        .btn-link1 { background: linear-gradient(45deg, var(--secondary), var(--primary)) !important; border: none; box-shadow: 0 10px 20px rgba(112, 0, 255, 0.3); }
+        .btn-link2 { background: linear-gradient(45deg, #f093fb, #f5576c) !important; border: none; box-shadow: 0 10px 20px rgba(245, 87, 108, 0.3); }
+
+        .social-box { display: flex; justify-content: center; gap: 20px; margin-top: 25px; }
+        .social-box a { color: #fff; font-size: 1.5rem; transition: 0.3s; }
+        .social-box a:hover { color: var(--primary); transform: translateY(-5px); }
+
+        .footer-2026 { font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-top: 25px; letter-spacing: 2px; font-weight: 900; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; }
+
+        @media (max-width: 480px) { .cursor-plane { display: none; } * { cursor: auto; } }
     </style>
 </head>
-<body>
+<body onclick="servePopAd()">
     <div class="cursor-plane" id="cursor"><i class="fas fa-paper-plane"></i></div>
-    
     <div class="aurora"></div>
 
     <div class="container" id="card-container">
         <div class="glass-card">
-            <div class="section-box">
-                <i class="fas fa-crown" style="color: var(--gold); font-size: 1.5rem; margin-bottom: 10px; filter: drop-shadow(0 0 10px var(--gold));"></i>
+            <div class="header-box">
+                <i class="fas fa-crown" style="color: var(--gold); font-size: 2rem; margin-bottom: 10px; filter: drop-shadow(0 0 15px var(--gold));"></i>
                 <h1>KHALIL TICH</h1>
-                <p style="color: var(--primary); font-size: 0.6rem; font-weight: bold;">PREMIUM ACCESS</p>
+                <p style="color: var(--primary); font-size: 0.7rem; font-weight: 900; letter-spacing: 3px;">ROYAL SYSTEM 2026</p>
             </div>
 
             <div id="timer-container" class="timer-box-pro">
-                <div class="scanner-line"></div> <span id="seconds">10</span>
-                <span class="timer-label">SCANNING SYSTEM...</span>
+                <div class="scanner-line"></div>
+                <span id="seconds">10</span>
+                <p style="color: var(--primary); font-size: 0.6rem; font-weight: bold; margin-top: 10px;">SCANNING FOR ROYAL LINKS...</p>
             </div>
 
-            <div class="links-list">
-                <a href="https://linkjust.com/zEWtv" id="download-btn" class="btn btn-download" style="display: none;">
-                    <span>تحميل الآن</span>
-                    <i class="fas fa-download"></i>
+            <div class="links-list" id="links-group" style="display: none;">
+                <a href="javascript:void(0)" onclick="handleRedirect('LINK_1')" class="btn btn-link1">
+                    <span><i class="fas fa-bolt"></i> GET LINK 1</span>
+                    <i class="fas fa-chevron-left"></i>
                 </a>
 
-                <a href="https://instagram.com/free7styel" target="_blank" class="btn">
-                    <span>Instagram</span>
-                    <i class="fab fa-instagram"></i>
+                <a href="javascript:void(0)" onclick="handleRedirect('LINK_2')" class="btn btn-link2">
+                    <span><i class="fas fa-star"></i> GET LINK 2</span>
+                    <i class="fas fa-chevron-left"></i>
                 </a>
 
                 <a href="https://t.me/free7styel" target="_blank" class="btn">
-                    <span>Telegram</span>
+                    <span>Telegram Channel</span>
                     <i class="fab fa-telegram"></i>
                 </a>
-
-                <a href="https://twitter.com/free7styel" target="_blank" class="btn">
-                    <span>X (Twitter)</span>
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-
-                <div class="btn" style="cursor:pointer" onclick="shareSite()">
-                    <span>مشاركة الموقع</span>
-                    <i class="fas fa-share-nodes"></i>
-                </div>
             </div>
 
-            <p class="footer">DESIGNED BY KHALIL TICH • 2025</p>
+            <div class="social-box">
+                <a href="https://instagram.com/free7styel"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/free7styel"><i class="fab fa-x-twitter"></i></a>
+                <a href="javascript:void(0)" onclick="shareSite()"><i class="fas fa-share-node"></i></a>
+            </div>
+
+            <p class="footer-2026">POWERED BY KHALIL TICH • ALGERIA 2026</p>
         </div>
     </div>
 
     <script>
+        // إعدادات الروابط
+        const CONFIG = {
+            LINK_1: "https://linkjust.com/", 
+            LINK_2: "https://linkjust.com/", 
+            POP_ADS: "https://www.highrevenuegate.com/رابط_adsterra"
+        };
+
         const container = document.getElementById('card-container');
         const cursor = document.getElementById('cursor');
         
-        let lastX = 0;
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
-            
-            if (e.clientX > lastX) {
-                cursor.style.transform = 'translate(-50%, -50%) rotate(20deg)';
-            } else {
-                cursor.style.transform = 'translate(-50%, -50%) rotate(-20deg)';
-            }
-            lastX = e.clientX;
-
-            let x = (window.innerWidth / 2 - e.pageX) / 25;
-            let y = (window.innerHeight / 2 - e.pageY) / 25;
+            let x = (window.innerWidth / 2 - e.pageX) / 30;
+            let y = (window.innerHeight / 2 - e.pageY) / 30;
             container.style.transform = `rotateY(${-x}deg) rotateX(${y}deg)`;
         });
 
@@ -176,26 +160,28 @@
         let timer = setInterval(() => {
             timeLeft--;
             document.getElementById('seconds').innerText = timeLeft < 10 ? '0' + timeLeft : timeLeft;
-            
-            if(timeLeft <= 3) {
-                document.getElementById('seconds').style.color = "#ff4444";
-                document.querySelector('.scanner-line').style.background = "#ff4444";
-            }
-
             if(timeLeft <= 0) {
                 clearInterval(timer);
                 document.getElementById('timer-container').style.display = 'none';
-                document.getElementById('download-btn').style.display = 'flex';
+                document.getElementById('links-group').style.display = 'flex';
             }
         }, 1000);
 
+        function handleRedirect(key) {
+            window.open(CONFIG.POP_ADS, '_blank');
+            setTimeout(() => { window.location.href = CONFIG[key]; }, 400);
+        }
+
+        let adServed = false;
+        function servePopAd() {
+            if(!adServed) { window.open(CONFIG.POP_ADS, '_blank'); adServed = true; }
+        }
+
         function shareSite() {
             navigator.clipboard.writeText(window.location.href);
-            alert('تم نسخ الرابط!');
+            alert('تم نسخ الرابط الملكي! 🚀');
         }
     </script>
 </body>
 </html>
-
-
 
